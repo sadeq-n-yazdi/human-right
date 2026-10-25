@@ -184,3 +184,36 @@ a { color: var(--accent); }
   color: var(--muted);
   font-size: .85rem;
 }
+
+/* Links to the recording (udhr.audio) and the official text (OHCHR). */
+.external {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 0 0 1.5rem;
+  font: .9rem/1.4 "Source Serif 4", Georgia, serif;
+}
+[dir="rtl"] .external { justify-content: flex-end; }
+.external a {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .35rem .8rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  text-decoration: none;
+}
+.external a:hover { border-color: var(--accent); background: var(--accent-soft); }
+.external .via { color: var(--muted); font-size: .85em; }
+/* Home cards: the secondary "Listen" link sits small under the language name. */
+.home li a + a {
+  padding: .2rem;
+  margin-top: -.6rem;
+  border: 0;
+  font-size: .8rem;
+  color: var(--muted);
+}
+.home li { display: flex; flex-direction: column; }
+.home li { font-size: 0; }           /* hide the " · " separator text */
+.home li a { font-size: 1.1rem; }
+.home li a + a { font-size: .8rem; }
