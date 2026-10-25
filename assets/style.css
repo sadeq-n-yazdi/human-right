@@ -6,7 +6,11 @@
   --accent: #1f5fa8;
   --accent-soft: #e8f0fa;
   --measure: 40rem;
-  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  /* Source Serif has no Arabic-script glyphs, so any Persian/Arabic text in an
+     untagged context (home page, nav) falls through to Vazirmatn. */
+  --serif: "Source Serif 4", "Vazirmatn", Georgia, "Times New Roman", serif;
+  --persian: "Vazirmatn", Tahoma, sans-serif;
+  --arabic: "Noto Naskh Arabic", "Vazirmatn", "Geeza Pro", serif;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -27,8 +31,13 @@ body {
   color: var(--fg);
   font: 1.125rem/1.7 var(--serif);
 }
-:lang(fa) { font-family: "Vazirmatn", Tahoma, sans-serif; line-height: 1.9; }
-:lang(ar) { font-family: "Noto Naskh Arabic", "Geeza Pro", serif; line-height: 2; }
+:lang(fa) { font-family: var(--persian); line-height: 1.9; }
+:lang(ar) { font-family: var(--arabic); line-height: 2; }
+/* Letter-spacing breaks the joining of Arabic-script letters. */
+:lang(fa), :lang(ar), [dir="rtl"] { letter-spacing: normal !important; }
+/* Native numerals for numbered paragraphs. */
+:lang(fa) ol { list-style-type: persian; }
+:lang(ar) ol { list-style-type: arabic-indic; }
 :lang(zh) { font-family: "PingFang SC", "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif; line-height: 1.9; }
 
 a { color: var(--accent); }
