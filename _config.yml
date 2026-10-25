@@ -1,5 +1,5 @@
 title: Universal Declaration of Human Rights
-description: The Universal Declaration of Human Rights in Persian and the six official UN languages.
+description: The Universal Declaration of Human Rights in Persian, the six official UN languages, and other languages of Iran and the region.
 lang: en
 
 # GitHub Pages enables these by default; listed so local builds behave the same.
@@ -19,13 +19,25 @@ exclude:
 # Languages shown in the site's language switcher, in display order.
 # A language appears only once its readme.<code>.md file exists in the repo.
 languages:
-  - { code: fa, native: "فارسی",    text_dir: rtl }
-  - { code: en, native: "English",  text_dir: ltr }
-  - { code: ar, native: "العربية",  text_dir: rtl }
-  - { code: zh, native: "中文",      text_dir: ltr }
-  - { code: fr, native: "Français", text_dir: ltr }
-  - { code: ru, native: "Русский",  text_dir: ltr }
-  - { code: es, native: "Español",  text_dir: ltr }
+  - { code: fa,      native: "فارسی",          text_dir: rtl }
+  - { code: fa-AF,   native: "دری",            text_dir: rtl }
+  - { code: tg,      native: "Тоҷикӣ",         text_dir: ltr }
+  - { code: en,      native: "English",        text_dir: ltr }
+  - { code: ar,      native: "العربية",        text_dir: rtl }
+  - { code: zh,      native: "中文",            text_dir: ltr }
+  - { code: fr,      native: "Français",       text_dir: ltr }
+  - { code: ru,      native: "Русский",        text_dir: ltr }
+  - { code: es,      native: "Español",        text_dir: ltr }
+  - { code: hy,      native: "Հայերեն",        text_dir: ltr }
+  - { code: az-Latn, native: "Azərbaycanca",   text_dir: ltr }
+  - { code: az-Cyrl, native: "Азәрбајҹанҹа",   text_dir: ltr }
+  - { code: ka,      native: "ქართული",        text_dir: ltr }
+  - { code: he,      native: "עברית",          text_dir: rtl }
+  - { code: ps,      native: "پښتو",           text_dir: rtl }
+  - { code: tr,      native: "Türkçe",         text_dir: ltr }
+  - { code: tk-Latn, native: "Türkmençe",      text_dir: ltr }
+  - { code: tk-Cyrl, native: "Түркменче",      text_dir: ltr }
+  - { code: ur,      native: "اردو",           text_dir: rtl }
 
 # Give each language file a clean URL (/fa/, /en/ …) and its lang/dir,
 # without adding front matter to the text files themselves.
@@ -38,3 +50,15 @@ defaults:
   - { scope: { path: "readme.fr.md" }, values: { layout: default, lang: fr, text_dir: ltr, permalink: /fr/ } }
   - { scope: { path: "readme.ru.md" }, values: { layout: default, lang: ru, text_dir: ltr, permalink: /ru/ } }
   - { scope: { path: "readme.es.md" }, values: { layout: default, lang: es, text_dir: ltr, permalink: /es/ } }
+  - { scope: { path: "readme.fa-AF.md" }, values: { layout: default, lang: fa-AF, text_dir: rtl, permalink: /fa-af/ } }
+  - { scope: { path: "readme.tg.md" }, values: { layout: default, lang: tg, text_dir: ltr, permalink: /tg/ } }
+  - { scope: { path: "readme.hy.md" }, values: { layout: default, lang: hy, text_dir: ltr, permalink: /hy/ } }
+  - { scope: { path: "readme.az-Latn.md" }, values: { layout: default, lang: az-Latn, text_dir: ltr, permalink: /az-latn/ } }
+  - { scope: { path: "readme.az-Cyrl.md" }, values: { layout: default, lang: az-Cyrl, text_dir: ltr, permalink: /az-cyrl/ } }
+  - { scope: { path: "readme.ka.md" }, values: { layout: default, lang: ka, text_dir: ltr, permalink: /ka/ } }
+  - { scope: { path: "readme.he.md" }, values: { layout: default, lang: he, text_dir: rtl, permalink: /he/ } }
+  - { scope: { path: "readme.ps.md" }, values: { layout: default, lang: ps, text_dir: rtl, permalink: /ps/ } }
+  - { scope: { path: "readme.tr.md" }, values: { layout: default, lang: tr, text_dir: ltr, permalink: /tr/ } }
+  - { scope: { path: "readme.tk-Latn.md" }, values: { layout: default, lang: tk-Latn, text_dir: ltr, permalink: /tk-latn/ } }
+  - { scope: { path: "readme.tk-Cyrl.md" }, values: { layout: default, lang: tk-Cyrl, text_dir: ltr, permalink: /tk-cyrl/ } }
+  - { scope: { path: "readme.ur.md" }, values: { layout: default, lang: ur, text_dir: rtl, permalink: /ur/ } }
