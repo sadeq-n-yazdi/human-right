@@ -28,6 +28,15 @@ jobs:
         with:
           source: ./
           destination: ./_site
+      - name: Inspect output (preview only)
+        run: |
+          cd _site
+          echo "::notice title=files::$(find . -name '*.html' | sort | tr '\n' ' ')"
+          for l in fa en ar zh fr ru es; do
+            echo "::notice title=$l::$(grep -o '<html[^>]*>' $l/index.html) $(grep -o '<title>[^<]*' $l/index.html) h2=$(grep -c '<h2' $l/index.html) nav=$(grep -c 'hreflang=\"' $l/index.html)"
+          done
+          echo "::notice title=home-links::$(grep -o 'href=\"[^\"]*\"' index.html | tr '\n' ' ' | cut -c1-900)"
+          echo "::notice title=home-title::$(grep -o '<title>[^<]*' index.html) $(grep -o '<html[^>]*>' index.html)"
       - uses: actions/upload-pages-artifact@v3
 
   deploy:
