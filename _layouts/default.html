@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ page.lang | default: site.lang }}" dir="{{ page.dir | default: 'ltr' }}">
+<html lang="{{ page.lang | default: site.lang }}" dir="{{ page.text_dir | default: 'ltr' }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
       {%- for l in site.languages %}
         {%- assign target = site.pages | where: "lang", l.code | where_exp: "p", "p.home != true" | first %}
         {%- if target %}
-      <a href="{{ target.url | relative_url }}" lang="{{ l.code }}" dir="{{ l.dir }}" hreflang="{{ l.code }}"
+      <a href="{{ target.url | relative_url }}" lang="{{ l.code }}" dir="{{ l.text_dir }}" hreflang="{{ l.code }}"
          {% if target.url == page.url %}aria-current="page"{% endif %}>{{ l.native }}</a>
         {%- endif %}
       {%- endfor %}
