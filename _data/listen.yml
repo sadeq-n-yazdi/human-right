@@ -1,0 +1,24 @@
+# External pages for each language, keyed by the code used in _config.yml.
+#
+#   audio: language code on udhr.audio, the UN-backed UDHR Audio/Video Project
+#          (https://udhr.audio/UDHR_Video.asp?lng=<audio>). Listed only where
+#          the page has a recording; Tajik, Azerbaijani, Georgian, Turkmen and
+#          Kurdish pages there are text-only for now.
+#   ohchr: page name of the official translation on ohchr.org
+#          (https://www.ohchr.org/en/human-rights/universal-declaration/translations/<ohchr>),
+#          which offers the text as a PDF. Listed where the page was verified.
+
+fa:    { audio: per, ohchr: farsipersian }
+fa-AF: { audio: pes, ohchr: dari }
+tg:    { ohchr: tajik }
+en:    { audio: eng, ohchr: english }
+ar:    { audio: ara, ohchr: arabic }
+zh:    { audio: chi, ohchr: chinese }
+fr:    { audio: fre, ohchr: french }
+ru:    { audio: rus, ohchr: russian }
+es:    { audio: SPA, ohchr: spanish }
+hy:    { audio: arm, ohchr: armenian }
+ka:    { ohchr: georgian }
+he:    { audio: heb, ohchr: hebrew }
+tr:    { audio: tur }
+ur:    { audio: urd }
