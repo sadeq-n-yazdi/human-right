@@ -1,0 +1,40 @@
+title: Universal Declaration of Human Rights
+description: The Universal Declaration of Human Rights in Persian and the six official UN languages.
+lang: en
+
+# GitHub Pages enables these by default; listed so local builds behave the same.
+plugins:
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-relative-links
+  - jekyll-titles-from-headings
+  - jekyll-default-layout
+
+relative_links:
+  enabled: true
+
+exclude:
+  - LICENSE
+
+# Languages shown in the site's language switcher, in display order.
+# A language appears only once its readme.<code>.md file exists in the repo.
+languages:
+  - { code: fa, native: "فارسی",    dir: rtl }
+  - { code: en, native: "English",  dir: ltr }
+  - { code: ar, native: "العربية",  dir: rtl }
+  - { code: zh, native: "中文",      dir: ltr }
+  - { code: fr, native: "Français", dir: ltr }
+  - { code: ru, native: "Русский",  dir: ltr }
+  - { code: es, native: "Español",  dir: ltr }
+
+# Give each language file a clean URL (/fa/, /en/ …) and its lang/dir,
+# without adding front matter to the text files themselves.
+defaults:
+  - { scope: { path: "README.md" },    values: { layout: default, lang: en, dir: ltr, home: true } }
+  - { scope: { path: "readme.fa.md" }, values: { layout: default, lang: fa, dir: rtl, permalink: /fa/ } }
+  - { scope: { path: "readme.en.md" }, values: { layout: default, lang: en, dir: ltr, permalink: /en/ } }
+  - { scope: { path: "readme.ar.md" }, values: { layout: default, lang: ar, dir: rtl, permalink: /ar/ } }
+  - { scope: { path: "readme.zh.md" }, values: { layout: default, lang: zh, dir: ltr, permalink: /zh/ } }
+  - { scope: { path: "readme.fr.md" }, values: { layout: default, lang: fr, dir: ltr, permalink: /fr/ } }
+  - { scope: { path: "readme.ru.md" }, values: { layout: default, lang: ru, dir: ltr, permalink: /ru/ } }
+  - { scope: { path: "readme.es.md" }, values: { layout: default, lang: es, dir: ltr, permalink: /es/ } }

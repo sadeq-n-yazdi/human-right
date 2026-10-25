@@ -1,0 +1,120 @@
+:root {
+  --bg: #fbfaf7;
+  --fg: #1d1c1a;
+  --muted: #6b6760;
+  --rule: #e4e0d8;
+  --accent: #1f5fa8;
+  --accent-soft: #e8f0fa;
+  --measure: 40rem;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161615;
+    --fg: #e9e6df;
+    --muted: #a19c93;
+    --rule: #2e2d2a;
+    --accent: #8ab8ee;
+    --accent-soft: #1d2a3a;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 1.125rem/1.7 var(--serif);
+}
+:lang(fa) { font-family: "Vazirmatn", Tahoma, sans-serif; line-height: 1.9; }
+:lang(ar) { font-family: "Noto Naskh Arabic", "Geeza Pro", serif; line-height: 2; }
+:lang(zh) { font-family: "PingFang SC", "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif; line-height: 1.9; }
+
+a { color: var(--accent); }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem 1.25rem;
+  padding: .75rem 16px;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--rule);
+  font-size: .95rem;
+  direction: ltr;
+}
+.site-title {
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-decoration: none;
+  color: var(--fg);
+}
+.langs { display: flex; flex-wrap: wrap; gap: .25rem; }
+.langs a {
+  padding: .15rem .6rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--muted);
+}
+.langs a:hover { color: var(--fg); background: var(--accent-soft); }
+.langs a[aria-current="page"] { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+
+.doc {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 2.5rem 16px 4rem;
+}
+.doc h1 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  line-height: 1.25;
+  margin: 0 0 .75rem;
+  font-weight: 600;
+}
+.doc h1 + p em { color: var(--muted); font-size: .95rem; }
+.doc h2 {
+  font-size: 1.05rem;
+  letter-spacing: .04em;
+  color: var(--accent);
+  margin: 2.75rem 0 .5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-weight: 600;
+}
+.doc p { margin: 0 0 1rem; }
+.doc ol, .doc ul { padding-inline-start: 1.5rem; margin: 0 0 1rem; }
+.doc li { margin-bottom: .6rem; }
+
+/* Home page: the README's language list becomes a grid of cards. */
+.home h1 { text-align: center; margin-bottom: 2rem; }
+.home ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: .75rem;
+}
+.home li { margin: 0; }
+.home li a {
+  display: block;
+  padding: 1rem;
+  border: 1px solid var(--rule);
+  border-radius: .6rem;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.1rem;
+}
+.home li a:hover { border-color: var(--accent); background: var(--accent-soft); }
+
+.site-footer {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 1.5rem 16px 3rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: .85rem;
+}
