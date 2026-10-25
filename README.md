@@ -20,6 +20,7 @@
 - [Азәрбајҹанҹа — Azerbaijani (Cyrillic)](./readme.az-Cyrl.md)
 - [ქართული — Georgian](./readme.ka.md)
 - [עברית — Hebrew](./readme.he.md)
+- [Kurdî — Kurdish (Kurmanji, Latin)](./readme.ku.md)
 - [پښتو — Pashto](./readme.ps.md)
 - [Türkçe — Turkish](./readme.tr.md)
 - [Türkmençe — Turkmen (Latin)](./readme.tk-Latn.md)
