@@ -32,7 +32,7 @@ jobs:
         run: |
           cd _site
           echo "::notice title=pages::$(find . -name index.html | sort | tr '\n' ' ')"
-          for d in fa-af tg hy az-latn az-cyrl ka he ps tr tk-latn tk-cyrl ur fa en; do
+          for d in tk-latn tk-cyrl ur fa en; do
             f=$d/index.html
             echo "::notice title=$d::$(grep -o '<html[^>]*>' $f) h2=$(grep -c '<h2' $f) li=$(grep -c '<li>' $f) menu=$(grep -c 'hreflang=\"[^\"]*\" *$\|hreflang=\"[a-zA-Z-]*\"$' $f) nastaliq=$(grep -c Nastaliq $f) summary=$(grep -A3 '<summary>' $f | grep -o '<span[^<]*' | head -1)"
           done
