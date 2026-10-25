@@ -14,21 +14,40 @@
   {%- endfor %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Vazirmatn:wght@400;600&family=Noto+Naskh+Arabic:wght@400;600&display=swap">
+  {%- comment %}
+    Google Fonts serves each script as a separate unicode-range subset, so a
+    browser only downloads the scripts a page actually shows (its text plus the
+    language menu). The large Nastaliq font is requested on the Urdu page only.
+  {% endcomment %}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Serif:wght@400;600&family=Vazirmatn:wght@400;600&family=Noto+Naskh+Arabic:wght@400;600&family=Frank+Ruhl+Libre:wght@400;600&family=Noto+Serif+Armenian:wght@400;600&family=Noto+Serif+Georgian:wght@400;600&display=swap">
+  {%- if page.lang == "ur" %}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&display=swap">
+  {%- endif %}
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
 </head>
 <body>
+  {%- assign current = site.languages | where: "code", page.lang | first %}
   <header class="site-header">
     <a class="site-title" href="{{ '/' | relative_url }}">UDHR</a>
-    <nav class="langs" aria-label="Languages">
-      {%- for l in site.languages %}
-        {%- assign target = site.pages | where: "lang", l.code | where_exp: "p", "p.home != true" | first %}
-        {%- if target %}
-      <a href="{{ target.url | relative_url }}" lang="{{ l.code }}" dir="{{ l.text_dir }}" hreflang="{{ l.code }}"
-         {% if target.url == page.url %}aria-current="page"{% endif %}>{{ l.native }}</a>
+    <details class="lang-menu">
+      <summary>
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 0c2.5 2.4 3.8 5.4 3.8 9s-1.3 6.6-3.8 9m0-18C9.5 5.4 8.2 8.4 8.2 12s1.3 6.6 3.8 9M3.5 9h17M3.5 15h17"/></svg>
+        {%- if current and page.home != true %}
+        <span lang="{{ current.code }}" dir="{{ current.text_dir }}">{{ current.native }}</span>
+        {%- else %}
+        <span>Languages</span>
         {%- endif %}
-      {%- endfor %}
-    </nav>
+      </summary>
+      <nav class="langs" aria-label="Languages">
+        {%- for l in site.languages %}
+          {%- assign target = site.pages | where: "lang", l.code | where_exp: "p", "p.home != true" | first %}
+          {%- if target %}
+        <a href="{{ target.url | relative_url }}" lang="{{ l.code }}" dir="{{ l.text_dir }}" hreflang="{{ l.code }}"
+           {% if target.url == page.url %}aria-current="page"{% endif %}>{{ l.native }}</a>
+          {%- endif %}
+        {%- endfor %}
+      </nav>
+    </details>
   </header>
 
   <main class="doc{% if page.home %} home{% endif %}">
@@ -39,5 +58,22 @@
     Adopted by the United Nations General Assembly, resolution 217 A (III), 10 December 1948.
     · <a href="https://github.com/sadeq-n-yazdi/human-right">Source on GitHub</a>
   </footer>
+
+  <script>
+    // Close the language menu on outside click or Escape.
+    (function () {
+      var menu = document.querySelector(".lang-menu");
+      if (!menu) return;
+      document.addEventListener("click", function (e) {
+        if (menu.open && !menu.contains(e.target)) menu.open = false;
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && menu.open) {
+          menu.open = false;
+          menu.querySelector("summary").focus();
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

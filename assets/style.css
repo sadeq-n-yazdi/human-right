@@ -6,11 +6,19 @@
   --accent: #1f5fa8;
   --accent-soft: #e8f0fa;
   --measure: 40rem;
-  /* Source Serif has no Arabic-script glyphs, so any Persian/Arabic text in an
-     untagged context (home page, nav) falls through to Vazirmatn. */
-  --serif: "Source Serif 4", "Vazirmatn", Georgia, "Times New Roman", serif;
+  /* Source Serif covers Latin and basic Cyrillic only. Text in other scripts
+     without a lang tag (home page cards) falls through, glyph by glyph, to the
+     matching Google font below instead of a system font. */
+  --serif: "Source Serif 4", "Vazirmatn", "Frank Ruhl Libre", "Noto Serif Armenian",
+           "Noto Serif Georgian", "Noto Serif", Georgia, "Times New Roman", serif;
   --persian: "Vazirmatn", Tahoma, sans-serif;
   --arabic: "Noto Naskh Arabic", "Vazirmatn", "Geeza Pro", serif;
+  --urdu: "Noto Nastaliq Urdu", var(--arabic);
+  --hebrew: "Frank Ruhl Libre", "Noto Serif Hebrew", "Times New Roman", serif;
+  --armenian: "Noto Serif Armenian", serif;
+  --georgian: "Noto Serif Georgian", serif;
+  /* Noto Serif has the extra Cyrillic letters of Tajik, Azerbaijani, Turkmen. */
+  --cyrillic-ext: "Noto Serif", "Source Serif 4", serif;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -31,14 +39,26 @@ body {
   color: var(--fg);
   font: 1.125rem/1.7 var(--serif);
 }
-:lang(fa) { font-family: var(--persian); line-height: 1.9; }
-:lang(ar) { font-family: var(--arabic); line-height: 2; }
+:lang(fa) { font-family: var(--persian); }          /* also fa-AF (Dari) */
+:lang(ar), :lang(ps) { font-family: var(--arabic); }
+:lang(ur) { font-family: var(--urdu); }              /* Nastaliq on the Urdu page; Naskh elsewhere */
+:lang(he) { font-family: var(--hebrew); }
+:lang(hy) { font-family: var(--armenian); }
+:lang(ka) { font-family: var(--georgian); }
+:lang(tg), :lang(az-Cyrl), :lang(tk-Cyrl) { font-family: var(--cyrillic-ext); }
+:lang(zh) { font-family: "PingFang SC", "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif; }
+
+.doc:lang(fa), .doc:lang(zh) { line-height: 1.9; }
+.doc:lang(ar), .doc:lang(ps) { line-height: 2; }
+.doc:lang(ur) { line-height: 2.6; }
+
 /* Letter-spacing breaks the joining of Arabic-script letters. */
-:lang(fa), :lang(ar), [dir="rtl"] { letter-spacing: normal !important; }
+:lang(fa), :lang(ar), :lang(ps), :lang(ur), [dir="rtl"] { letter-spacing: normal !important; }
+
 /* Native numerals for numbered paragraphs. */
-:lang(fa) ol { list-style-type: persian; }
+:lang(fa) ol, :lang(ps) ol { list-style-type: persian; }
 :lang(ar) ol { list-style-type: arabic-indic; }
-:lang(zh) { font-family: "PingFang SC", "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif; line-height: 1.9; }
+:lang(ur) ol { list-style-type: urdu; }
 
 a { color: var(--accent); }
 
@@ -49,8 +69,9 @@ a { color: var(--accent); }
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   gap: .5rem 1.25rem;
-  padding: .75rem 16px;
+  padding: .6rem 16px;
   background: color-mix(in srgb, var(--bg) 92%, transparent);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--rule);
@@ -63,14 +84,49 @@ a { color: var(--accent); }
   text-decoration: none;
   color: var(--fg);
 }
-.langs { display: flex; flex-wrap: wrap; gap: .25rem; }
-.langs a {
-  padding: .15rem .6rem;
+
+/* Language menu */
+.lang-menu { position: relative; }
+.lang-menu summary {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .3rem .8rem;
+  border: 1px solid var(--rule);
   border-radius: 999px;
-  text-decoration: none;
-  color: var(--muted);
+  cursor: pointer;
+  list-style: none;
+  color: var(--fg);
+  user-select: none;
 }
-.langs a:hover { color: var(--fg); background: var(--accent-soft); }
+.lang-menu summary::-webkit-details-marker { display: none; }
+.lang-menu summary::after { content: "▾"; color: var(--muted); font-size: .8em; }
+.lang-menu summary:hover, .lang-menu[open] summary { border-color: var(--accent); }
+.lang-menu summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.langs {
+  position: absolute;
+  inset-inline-end: 0;
+  top: calc(100% + .4rem);
+  width: min(26rem, calc(100vw - 32px));
+  max-height: min(70vh, 32rem);
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+  gap: .15rem;
+  padding: .5rem;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: .75rem;
+  box-shadow: 0 10px 30px rgb(0 0 0 / .12);
+}
+.langs a {
+  padding: .4rem .6rem;
+  border-radius: .45rem;
+  text-decoration: none;
+  color: var(--fg);
+  text-align: start;
+}
+.langs a:hover { background: var(--accent-soft); }
 .langs a[aria-current="page"] { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
 
 .doc {
@@ -100,6 +156,7 @@ a { color: var(--accent); }
 
 /* Home page: the README's language list becomes a grid of cards. */
 .home h1 { text-align: center; margin-bottom: 2rem; }
+.home h2 { text-align: center; border-top: 0; margin-top: 2.25rem; }
 .home ul {
   list-style: none;
   padding: 0;
