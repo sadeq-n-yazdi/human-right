@@ -33,6 +33,7 @@ languages:
   - { code: az-Cyrl, native: "Азәрбајҹанҹа",   text_dir: ltr }
   - { code: ka,      native: "ქართული",        text_dir: ltr }
   - { code: he,      native: "עברית",          text_dir: rtl }
+  - { code: ku,      native: "Kurdî",          text_dir: ltr }
   - { code: ps,      native: "پښتو",           text_dir: rtl }
   - { code: tr,      native: "Türkçe",         text_dir: ltr }
   - { code: tk-Latn, native: "Türkmençe",      text_dir: ltr }
@@ -62,3 +63,4 @@ defaults:
   - { scope: { path: "readme.tk-Latn.md" }, values: { layout: default, lang: tk-Latn, text_dir: ltr, permalink: /tk-latn/ } }
   - { scope: { path: "readme.tk-Cyrl.md" }, values: { layout: default, lang: tk-Cyrl, text_dir: ltr, permalink: /tk-cyrl/ } }
   - { scope: { path: "readme.ur.md" }, values: { layout: default, lang: ur, text_dir: rtl, permalink: /ur/ } }
+  - { scope: { path: "readme.ku.md" }, values: { layout: default, lang: ku, text_dir: ltr, permalink: /ku/ } }
